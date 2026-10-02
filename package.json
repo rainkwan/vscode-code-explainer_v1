@@ -1,0 +1,67 @@
+{
+  "name": "line-context-explainer",
+  "displayName": "Line Context & Variable Explainer",
+  "description": "Explains code line mechanics, variable origins, and cause-and-effect impacts using OpenAI.",
+  "version": "1.0.0",
+  "publisher": "developer",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lineExplainer.explainLine",
+        "title": "Explain Selected Line Context"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "lineExplainer.explainLine",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "lineExplainer.explainLine",
+        "key": "ctrl+alt+e",
+        "mac": "cmd+alt+e",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Line Explainer",
+      "properties": {
+        "lineExplainer.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API Key (or set OPENAI_API_KEY environment variable)"
+        },
+        "lineExplainer.model": {
+          "type": "string",
+          "default": "gpt-4o",
+          "description": "OpenAI Model to use for explanations"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "openai": "^4.50.0"
+  }
+}
